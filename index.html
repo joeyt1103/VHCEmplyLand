@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VHC Intranet — Employee Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="site-header" id="site-header">
+    <nav class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="logo-mark">VHC</span>
+        <span class="logo-label">Intranet</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#resources" class="nav-link">Resources</a></li>
+        <li><a href="#departments" class="nav-link">Department Hubs</a></li>
+        <li><a href="#most-used" class="nav-link">Most Used</a></li>
+      </ul>
+      <button class="nav-search" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <span>Search</span>
+      </button>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="home">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        AMERICAN HANDS. TIMELESS CRAFT.
+      </div>
+      <h1 class="hero-heading">Crafted for a<br><em>clearer workday.</em></h1>
+      <p class="hero-sub">The VHC Intranet is the front door for policies, onboarding, SOPs, standards, and leadership communication. Everything here is organized so employees can find the right answer quickly.</p>
+      <div class="hero-actions">
+        <a href="#start" class="btn btn-primary">Find what I need</a>
+        <a href="#departments" class="btn btn-ghost">Browse departments</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="stat-num">5</span>
+          <span class="stat-label">Onboarding guides</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <span class="stat-num">14</span>
+          <span class="stat-label">IT employee guides</span>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <span class="stat-num">4</span>
+          <span class="stat-label">Department hubs</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- START WITH THE JOB -->
+    <section class="section" id="start">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Start with the job</div>
+          <h2 class="section-heading">Choose the task first.</h2>
+          <p class="section-sub">The document or department comes second.</p>
+        </div>
+        <div class="job-grid">
+          <a href="#" class="job-card">
+            <div class="job-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="job-card-body">
+              <h3 class="job-card-title">New to VHC</h3>
+              <p class="job-card-count">5 onboarding resources</p>
+            </div>
+            <div class="job-card-arrow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </div>
+          </a>
+          <a href="#" class="job-card">
+            <div class="job-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <div class="job-card-body">
+              <h3 class="job-card-title">Need IT help</h3>
+              <p class="job-card-count">14 employee guides</p>
+            </div>
+            <div class="job-card-arrow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </div>
+          </a>
+          <a href="#" class="job-card">
+            <div class="job-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+              </svg>
+            </div>
+            <div class="job-card-body">
+              <h3 class="job-card-title">Need a policy</h3>
+              <p class="job-card-count">Published HR policy library</p>
+            </div>
+            <div class="job-card-arrow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </div>
+          </a>
+          <a href="#" class="job-card">
+            <div class="job-card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/><line x1="12" y1="2" x2="12" y2="4"/>
+              </svg>
+            </div>
+            <div class="job-card-body">
+              <h3 class="job-card-title">Need a role reference</h3>
+              <p class="job-card-count">Current job description library</p>
+            </div>
+            <div class="job-card-arrow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIORITY RESOURCES -->
+    <section class="section section-tinted" id="resources">
+      <div class="container">
+        <div class="section-header section-header-row">
+          <div>
+            <div class="section-tag">Priority resources</div>
+            <h2 class="section-heading">The links employees<br>reach for most often.</h2>
+            <p class="section-sub">Surfaced before the deeper library.</p>
+          </div>
+          <a href="#most-used" class="btn btn-outline">See most-used</a>
+        </div>
+        <div class="resource-grid">
+          <a href="#" class="resource-card">
+            <div class="resource-card-header">
+              <div class="resource-icon resource-icon--amber">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                </svg>
+              </div>
+              <span class="resource-badge">Essential</span>
+            </div>
+            <h3 class="resource-title">Employee Handbook</h3>
+            <p class="resource-desc">Policies, expectations, and employment basics.</p>
+            <div class="resource-link">Open document <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          </a>
+          <a href="#" class="resource-card">
+            <div class="resource-card-header">
+              <div class="resource-icon resource-icon--blue">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+              </div>
+              <span class="resource-badge">Policy</span>
+            </div>
+            <h3 class="resource-title">Remote Work Policy</h3>
+            <p class="resource-desc">Guidance for hybrid and remote work.</p>
+            <div class="resource-link">Open document <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          </a>
+          <a href="#" class="resource-card">
+            <div class="resource-card-header">
+              <div class="resource-icon resource-icon--green">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              </div>
+              <span class="resource-badge">IT</span>
+            </div>
+            <h3 class="resource-title">IT Support Ticket Guide</h3>
+            <p class="resource-desc">How to request technical support.</p>
+            <div class="resource-link">Open document <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          </a>
+          <a href="#" class="resource-card">
+            <div class="resource-card-header">
+              <div class="resource-icon resource-icon--red">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <span class="resource-badge">Safety</span>
+            </div>
+            <h3 class="resource-title">Safety Program Overview</h3>
+            <p class="resource-desc">Training, safety, shop, and service material.</p>
+            <div class="resource-link">Open document <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEPARTMENT HUBS -->
+    <section class="section" id="departments">
+      <div class="container">
+        <div class="section-header section-header-row">
+          <div>
+            <div class="section-tag">Department hubs</div>
+            <h2 class="section-heading">Each hub is grouped by<br>the work you're completing.</h2>
+          </div>
+          <a href="#" class="btn btn-outline">View all pages</a>
+        </div>
+        <div class="dept-grid">
+          <div class="dept-card">
+            <div class="dept-card-top">
+              <div class="dept-icon dept-icon--amber">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                </svg>
+              </div>
+              <h3 class="dept-name">HR</h3>
+              <p class="dept-desc">Onboarding, policies, and job descriptions.</p>
+            </div>
+            <ul class="dept-links">
+              <li><a href="#" class="dept-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>Onboarding</a></li>
+              <li><a href="#" class="dept-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>Policies</a></li>
+              <li><a href="#" class="dept-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>Job descriptions</a></li>
+            </ul>
+          </div>
+          <div class="dept-card">
+            <div class="dept-card-top">
+              <div class="dept-icon dept-icon--blue">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              </div>
+              <h3 class="dept-name">IT</h3>
+              <p class="dept-desc">Help desk and documentation.</p>
+            </div>
+            <ul class="dept-links">
+              <li><a href="#" class="dept-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>IT Help Desk</a></li>
+              <li><a href="#" class="dept-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>Employee guides</a></li>
+              <li><a href="#" class="dept-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>Support ticket guide</a></li>
+            </ul>
+          </div>
+          <div class="dept-card">
+            <div class="dept-card-top">
+              <div class="dept-icon dept-icon--green">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+              </div>
+              <h3 class="dept-name">Operations</h3>
+              <p class="dept-desc">Training, safety, shop, delivery, service, and rework guidance.</p>
+            </div>
+            <ul class="dept-links">
+              <li><a href="#" class="dept-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>Training</a></li>
+              <li><a href="#" class="dept-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>Safety</a></li>
+              <li><a href="#" class="dept-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>Delivery and service</a></li>
+              <li><a href="#" class="dept-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>Shop operations</a></li>
+            </ul>
+          </div>
+          <div class="dept-card">
+            <div class="dept-card-top">
+              <div class="dept-icon dept-icon--purple">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+              </div>
+              <h3 class="dept-name">Leadership &amp; Sales</h3>
+              <p class="dept-desc">Organization, company updates, standards, and core sales process material.</p>
+            </div>
+            <ul class="dept-links">
+              <li><a href="#" class="dept-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>Organization</a></li>
+              <li><a href="#" class="dept-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>Town halls</a></li>
+              <li><a href="#" class="dept-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>Sales standards</a></li>
+              <li><a href="#" class="dept-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>Sales processes</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECENT + MOST USED -->
+    <section class="section section-tinted" id="most-used">
+      <div class="container">
+        <div class="two-col-section">
+
+          <!-- Recent additions -->
+          <div class="recent-col">
+            <div class="section-tag">Recent additions</div>
+            <h2 class="section-heading-sm">Freshly published updates.</h2>
+            <div class="recent-list">
+              <a href="#" class="recent-item">
+                <div class="recent-item-label">
+                  <span class="recent-badge recent-badge--new">New</span>
+                  <span class="recent-meta">April 2026 &middot; Leadership</span>
+                </div>
+                <h3 class="recent-title">Town Hall April 2026 Summary</h3>
+                <p class="recent-desc">Company updates and leadership communication from the latest town hall.</p>
+                <div class="resource-link">Read summary <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+              </a>
+              <a href="#" class="recent-item">
+                <div class="recent-item-label">
+                  <span class="recent-badge recent-badge--ops">Operations</span>
+                  <span class="recent-meta">April 2026 &middot; Operations</span>
+                </div>
+                <h3 class="recent-title">Rework Process Overview</h3>
+                <p class="recent-desc">Operations guidance for current rework handling and documentation.</p>
+                <div class="resource-link">Read overview <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Most used -->
+          <div class="mostused-col">
+            <div class="section-tag">Most-used destinations</div>
+            <h2 class="section-heading-sm">Where employees go most.</h2>
+            <ol class="mostused-list">
+              <li class="mostused-item">
+                <span class="mostused-num">1</span>
+                <div class="mostused-body">
+                  <a href="#" class="mostused-title">Employee Handbook</a>
+                  <span class="mostused-sub">Employment guidance</span>
+                </div>
+                <div class="mostused-arrow">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
+              </li>
+              <li class="mostused-item">
+                <span class="mostused-num">2</span>
+                <div class="mostused-body">
+                  <a href="#" class="mostused-title">Remote Work Policy</a>
+                  <span class="mostused-sub">Hybrid work standards</span>
+                </div>
+                <div class="mostused-arrow">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
+              </li>
+              <li class="mostused-item">
+                <span class="mostused-num">3</span>
+                <div class="mostused-body">
+                  <a href="#" class="mostused-title">IT Support Ticket Guide</a>
+                  <span class="mostused-sub">Request support</span>
+                </div>
+                <div class="mostused-arrow">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
+              </li>
+              <li class="mostused-item">
+                <span class="mostused-num">4</span>
+                <div class="mostused-body">
+                  <a href="#" class="mostused-title">Safety Program Overview</a>
+                  <span class="mostused-sub">Safety resources</span>
+                </div>
+                <div class="mostused-arrow">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
+              </li>
+              <li class="mostused-item">
+                <span class="mostused-num">5</span>
+                <div class="mostused-body">
+                  <a href="#" class="mostused-title">Delivery and service</a>
+                  <span class="mostused-sub">Operations guidance</span>
+                </div>
+                <div class="mostused-arrow">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
+              </li>
+              <li class="mostused-item">
+                <span class="mostused-num">6</span>
+                <div class="mostused-body">
+                  <a href="#" class="mostused-title">Sales standards</a>
+                  <span class="mostused-sub">Sales process material</span>
+                </div>
+                <div class="mostused-arrow">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SNAPSHOT BANNER -->
+    <section class="snapshot">
+      <div class="container">
+        <div class="snapshot-inner">
+          <div class="snapshot-label">Intranet snapshot</div>
+          <div class="snapshot-stats">
+            <div class="snapshot-stat">
+              <span class="snapshot-num">5</span>
+              <span class="snapshot-text">Onboarding resources</span>
+            </div>
+            <div class="snapshot-divider"></div>
+            <div class="snapshot-stat">
+              <span class="snapshot-num">14</span>
+              <span class="snapshot-text">IT guides</span>
+            </div>
+            <div class="snapshot-divider"></div>
+            <div class="snapshot-stat">
+              <span class="snapshot-num">4</span>
+              <span class="snapshot-text">Department hubs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="logo-mark">VHC</span>
+          <p class="footer-tagline">American Hands. Timeless Craft.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4 class="footer-col-title">Resources</h4>
+            <ul>
+              <li><a href="#">Employee Handbook</a></li>
+              <li><a href="#">Remote Work Policy</a></li>
+              <li><a href="#">IT Support Guide</a></li>
+              <li><a href="#">Safety Overview</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-col-title">Departments</h4>
+            <ul>
+              <li><a href="#">HR</a></li>
+              <li><a href="#">IT</a></li>
+              <li><a href="#">Operations</a></li>
+              <li><a href="#">Leadership &amp; Sales</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-col-title">Quick links</h4>
+            <ul>
+              <li><a href="#">Onboarding</a></li>
+              <li><a href="#">Town halls</a></li>
+              <li><a href="#">Job descriptions</a></li>
+              <li><a href="#">Sales standards</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 VHC. Internal use only.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

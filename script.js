@@ -1,34 +1,181 @@
-// Sticky nav shadow
-const header = document.getElementById('site-header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 8);
-}, { passive: true });
+/* VHC Intranet — script.js */
 
-// Mobile nav toggle
-const hamburger = document.getElementById('nav-hamburger');
-const navLinks  = document.getElementById('nav-links');
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-  hamburger.classList.toggle('open');
+// ── Data ──────────────────────────────────────────────
+const PEOPLE = [
+  { name: 'Joe Trave',      title: 'Founder & CEO',          dept: 'Leadership',  email: 'joe@villagehandcrafted.com',    phone: '(215) 555-0100', initials: 'JT', color: 'primary' },
+  { name: 'Maria Santos',   title: 'VP of Operations',       dept: 'Operations',  email: 'maria@villagehandcrafted.com',  phone: '(215) 555-0121', initials: 'MS', color: 'secondary' },
+  { name: 'Devon Hughes',   title: 'Senior Project Manager', dept: 'Projects',    email: 'devon@villagehandcrafted.com',  phone: '(215) 555-0142', initials: 'DH', color: 'accent' },
+  { name: 'Katie Park',     title: 'Design Lead',            dept: 'Design',      email: 'katie@villagehandcrafted.com',  phone: '(215) 555-0158', initials: 'KP', color: 'purple' },
+  { name: 'Amir Okafor',    title: 'Shop Floor Supervisor',  dept: 'Production',  email: 'amir@villagehandcrafted.com',   phone: '(215) 555-0165', initials: 'AO', color: 'secondary' },
+  { name: 'Lindsay Wu',     title: 'Trade Partner Manager',  dept: 'Sales',       email: 'lindsay@villagehandcrafted.com',phone: '(215) 555-0171', initials: 'LW', color: 'primary' },
+  { name: 'Ben Alvarez',    title: 'Finishing Specialist',   dept: 'Production',  email: 'ben@villagehandcrafted.com',    phone: '(215) 555-0188', initials: 'BA', color: 'accent' },
+  { name: 'Priya Shah',     title: 'Quality Control',        dept: 'Production',  email: 'priya@villagehandcrafted.com',  phone: '(215) 555-0192', initials: 'PS', color: 'primary' },
+  { name: 'Grace Kim',      title: 'People Operations',      dept: 'People',      email: 'grace@villagehandcrafted.com',  phone: '(215) 555-0203', initials: 'GK', color: 'secondary' },
+  { name: 'Tom Reilly',     title: 'IT & Systems',           dept: 'Technology',  email: 'tom@villagehandcrafted.ai',     phone: '(215) 555-0217', initials: 'TR', color: 'accent' },
+  { name: 'Sofia Martinez', title: 'Kitchen Designer',       dept: 'Design',      email: 'sofia@villagehandcrafted.com',  phone: '(215) 555-0224', initials: 'SM', color: 'purple' },
+  { name: 'Jesse Palmer',   title: 'Logistics Coordinator',  dept: 'Operations',  email: 'jesse@villagehandcrafted.com',  phone: '(215) 555-0231', initials: 'JP', color: 'primary' },
+];
+
+const AV_STYLES = {
+  primary:   'background:var(--vhc-primary);color:var(--vhc-primary-fg)',
+  secondary: 'background:var(--vhc-secondary);color:var(--vhc-secondary-fg)',
+  accent:    'background:var(--vhc-accent);color:var(--vhc-accent-fg)',
+  purple:    'background:hsl(251 86% 93%);color:hsl(263 70% 50%)',
+};
+
+// ── Router ────────────────────────────────────────────
+const ROUTE_TITLES = {
+  dashboard:     'Dashboard',
+  announcements: 'Announcements',
+  directory:     'Directory',
+  resources:     'Resources',
+  policies:      'Policies',
+};
+
+let currentRoute = 'dashboard';
+
+function navigate(route) {
+  if (!ROUTE_TITLES[route]) return;
+
+  // Hide all routes
+  document.querySelectorAll('[id^="route-"]').forEach(el => el.hidden = true);
+
+  // Show target route
+  const target = document.getElementById('route-' + route);
+  if (target) {
+    target.hidden = false;
+    target.classList.remove('fade-in');
+    void target.offsetWidth; // reflow to retrigger animation
+    target.classList.add('fade-in');
+  }
+
+  // Update topbar title
+  document.getElementById('topbar-title').textContent = ROUTE_TITLES[route];
+
+  // Update nav active state
+  document.querySelectorAll('.nav-item[data-route]').forEach(btn => {
+    btn.dataset.active = btn.dataset.route === route ? 'true' : 'false';
+  });
+
+  currentRoute = route;
+
+  // Close sidebar on mobile
+  if (window.innerWidth <= 768) {
+    document.getElementById('sidebar').classList.remove('open');
+  }
+
+  // Lazy-render directory on first visit
+  if (route === 'directory') renderDirectory();
+}
+
+// ── Nav item clicks ───────────────────────────────────
+document.querySelectorAll('.nav-item[data-route]').forEach(btn => {
+  btn.addEventListener('click', () => navigate(btn.dataset.route));
 });
 
-// Active nav link on scroll
-const sections = document.querySelectorAll('main section[id], main[id]');
-const navItems = document.querySelectorAll('.nav-link');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navItems.forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
-      });
+// "View all" button in dashboard announcements widget
+document.querySelectorAll('[data-route]').forEach(el => {
+  if (el.tagName === 'BUTTON' && !el.classList.contains('nav-item') && !el.classList.contains('filter-chip')) {
+    el.addEventListener('click', () => navigate(el.dataset.route));
+  }
+});
+
+// ── Sidebar mobile toggle ─────────────────────────────
+const sidebar = document.getElementById('sidebar');
+const hamburger = document.getElementById('topbar-hamburger');
+hamburger.addEventListener('click', () => sidebar.classList.toggle('open'));
+
+// Close sidebar when clicking outside on mobile
+document.addEventListener('click', e => {
+  if (window.innerWidth <= 768 && sidebar.classList.contains('open')) {
+    if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+      sidebar.classList.remove('open');
     }
-  });
-}, { threshold: 0.35 });
-sections.forEach(s => observer.observe(s));
+  }
+});
 
-// Close mobile nav on link click
-navItems.forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
+// ── User menu popover ─────────────────────────────────
+const userTrigger = document.getElementById('user-trigger');
+const userPopover = document.getElementById('user-popover');
+
+userTrigger.addEventListener('click', e => {
+  e.stopPropagation();
+  const open = !userPopover.hidden;
+  userPopover.hidden = open;
+  userTrigger.setAttribute('aria-expanded', String(!open));
+});
+
+document.addEventListener('mousedown', e => {
+  if (!userPopover.hidden && !userPopover.contains(e.target) && !userTrigger.contains(e.target)) {
+    userPopover.hidden = true;
+    userTrigger.setAttribute('aria-expanded', 'false');
+  }
+});
+
+// ── Directory render + search ─────────────────────────
+let directoryRendered = false;
+
+function renderDirectory(filter = '') {
+  const grid = document.getElementById('directory-grid');
+  const q = filter.toLowerCase();
+  const filtered = PEOPLE.filter(p =>
+    !q ||
+    p.name.toLowerCase().includes(q) ||
+    p.title.toLowerCase().includes(q) ||
+    p.dept.toLowerCase().includes(q)
+  );
+
+  // Update member count eyebrow
+  const eyebrow = document.querySelector('#route-directory .eyebrow');
+  if (eyebrow) eyebrow.textContent = filtered.length + ' members';
+
+  grid.innerHTML = filtered.map(p => `
+    <div class="card card-pad directory-card">
+      <span class="av av-lg" style="${AV_STYLES[p.color] || AV_STYLES.primary}">${p.initials}</span>
+      <div style="flex:1;min-width:0">
+        <div style="font-weight:600;font-size:15px">${p.name}</div>
+        <div style="font-size:13px;color:var(--vhc-muted-fg);margin-bottom:6px">${p.title}</div>
+        <span class="badge badge-outline">${p.dept}</span>
+        <div style="margin-top:8px;display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--vhc-muted-fg)">
+          <span style="display:inline-flex;align-items:center;gap:6px">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            ${p.email}
+          </span>
+          <span style="display:inline-flex;align-items:center;gap:6px">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+            ${p.phone}
+          </span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  directoryRendered = true;
+}
+
+const dirSearch = document.getElementById('directory-search');
+if (dirSearch) {
+  dirSearch.addEventListener('input', e => renderDirectory(e.target.value));
+}
+
+// ── Announcement filter chips ─────────────────────────
+document.querySelectorAll('.filter-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+
+    const tag = chip.dataset.tag;
+    document.querySelectorAll('.announcement-card').forEach(card => {
+      card.hidden = tag !== 'All' && card.dataset.tag !== tag;
+    });
   });
 });
+
+// ── Topbar scroll shadow ──────────────────────────────
+const topbar = document.getElementById('topbar');
+const appMain = document.querySelector('.app-main');
+if (appMain) {
+  appMain.addEventListener('scroll', () => {
+    topbar.style.boxShadow = appMain.scrollTop > 4 ? 'var(--vhc-shadow-md)' : '';
+  });
+}

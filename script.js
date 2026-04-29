@@ -276,10 +276,15 @@ const PICSIO_COLLECTION  = '6790fa1e20190488620f6d7f';
 
 // Placeholder slides shown when no API key is configured
 const PLACEHOLDER_SLIDES = [
-  { url: null, title: 'Hampton Lane Residence',   sub: 'Warm white kitchen · herringbone floor · brushed gold accents' },
-  { url: null, title: 'Westfield Kitchen',         sub: 'Shaker cabinetry · quartz countertops · matte black hardware' },
-  { url: null, title: 'Bryn Mawr Bath Suite',      sub: 'Marble tile · frameless glass · brushed nickel fixtures' },
-  { url: null, title: 'Center City Pantry Wall',   sub: 'Floor-to-ceiling built-ins · walnut veneer · integrated lighting' },
+  { url: 'images/frameless-1.jpg',    title: 'Frameless',     sub: 'Clean lines · full overlay · modern finish' },
+  { url: 'images/frameless-2.jpg',    title: 'Frameless',     sub: 'Clean lines · full overlay · modern finish' },
+  { url: 'images/frameless-3.jpg',    title: 'Frameless',     sub: 'Clean lines · full overlay · modern finish' },
+  { url: 'images/beaded-inset-1.jpg', title: 'Beaded Inset',  sub: 'Traditional detailing · inset doors · bead profile' },
+  { url: 'images/beaded-inset-2.jpg', title: 'Beaded Inset',  sub: 'Traditional detailing · inset doors · bead profile' },
+  { url: 'images/beaded-inset-3.jpg', title: 'Beaded Inset',  sub: 'Traditional detailing · inset doors · bead profile' },
+  { url: 'images/flush-inset-1.jpg',  title: 'Flush Inset',   sub: 'Precision fit · flush face · refined craftsmanship' },
+  { url: 'images/flush-inset-2.jpg',  title: 'Flush Inset',   sub: 'Precision fit · flush face · refined craftsmanship' },
+  { url: 'images/flush-inset-3.jpg',  title: 'Flush Inset',   sub: 'Precision fit · flush face · refined craftsmanship' },
 ];
 
 // ── State ───────────────────────────────────────────────

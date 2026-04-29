@@ -773,6 +773,115 @@ button { font-family: inherit; cursor: pointer; }
 .dept-link:hover svg { color: var(--vhc-primary); transform: translateX(2px); }
 
 /* =====================================================
+   PHOTO CAROUSEL
+   ===================================================== */
+.carousel {
+  position: relative;
+  height: 200px;
+  background: var(--vhc-muted);
+  overflow: hidden;
+}
+.carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+.carousel-slide {
+  flex: 0 0 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.carousel-slide-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--vhc-muted);
+  color: var(--vhc-muted-fg);
+}
+/* Prev / Next buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--vhc-border);
+  background: var(--vhc-card);
+  color: var(--vhc-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--vhc-dur-fast) var(--vhc-ease), background var(--vhc-dur-fast);
+  z-index: 2;
+  box-shadow: var(--vhc-shadow-sm);
+}
+.carousel:hover .carousel-btn,
+.carousel:focus-within .carousel-btn { opacity: 1; }
+.carousel-btn:hover { background: var(--vhc-accent); }
+.carousel-btn--prev { left: 10px; }
+.carousel-btn--next { right: 10px; }
+/* Dot indicators */
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  z-index: 2;
+}
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: background var(--vhc-dur-fast) var(--vhc-ease), transform var(--vhc-dur-fast);
+}
+.carousel-dot.active {
+  background: #fff;
+  transform: scale(1.3);
+}
+/* Loading state */
+.carousel-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--vhc-muted);
+  color: var(--vhc-muted-fg);
+  font-size: 12px;
+  gap: 8px;
+  z-index: 3;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.carousel-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--vhc-border);
+  border-top-color: var(--vhc-primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* =====================================================
    ANIMATIONS
    ===================================================== */
 @keyframes fadeUp {

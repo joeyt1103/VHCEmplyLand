@@ -265,6 +265,180 @@ if (dirSearch) {
 
 
 // ══════════════════════════════════════════════════════
+// PHOTO CAROUSEL
+// ══════════════════════════════════════════════════════
+
+// ── Configuration ──────────────────────────────────────
+// To connect to pics.io, set your API key and collection ID here.
+// Leave PICSIO_API_KEY as null to use the placeholder slides below.
+const PICSIO_API_KEY     = null; // e.g. 'Bearer eyJhbGci...'
+const PICSIO_COLLECTION  = '6790fa1e20190488620f6d7f';
+
+// Placeholder slides shown when no API key is configured
+const PLACEHOLDER_SLIDES = [
+  { url: 'images/frameless-1.jpg',    title: 'Frameless',     sub: 'Clean lines · full overlay · modern finish' },
+  { url: 'images/frameless-2.jpg',    title: 'Frameless',     sub: 'Clean lines · full overlay · modern finish' },
+  { url: 'images/frameless-3.jpg',    title: 'Frameless',     sub: 'Clean lines · full overlay · modern finish' },
+  { url: 'images/beaded-inset-1.jpg', title: 'Beaded Inset',  sub: 'Traditional detailing · inset doors · bead profile' },
+  { url: 'images/beaded-inset-2.jpg', title: 'Beaded Inset',  sub: 'Traditional detailing · inset doors · bead profile' },
+  { url: 'images/beaded-inset-3.jpg', title: 'Beaded Inset',  sub: 'Traditional detailing · inset doors · bead profile' },
+  { url: 'images/flush-inset-1.jpg',  title: 'Flush Inset',   sub: 'Precision fit · flush face · refined craftsmanship' },
+  { url: 'images/flush-inset-2.jpg',  title: 'Flush Inset',   sub: 'Precision fit · flush face · refined craftsmanship' },
+  { url: 'images/flush-inset-3.jpg',  title: 'Flush Inset',   sub: 'Precision fit · flush face · refined craftsmanship' },
+];
+
+// ── State ───────────────────────────────────────────────
+let carouselSlides  = [];
+let carouselIndex   = 0;
+let carouselTimer   = null;
+const CAROUSEL_INTERVAL = 5000;
+
+// ── DOM refs ────────────────────────────────────────────
+const carouselTrack  = document.getElementById('carousel-track');
+const carouselDots   = document.getElementById('carousel-dots');
+const carouselPrev   = document.getElementById('carousel-prev');
+const carouselNext   = document.getElementById('carousel-next');
+const captionTitle   = document.getElementById('carousel-caption-title');
+const captionSub     = document.getElementById('carousel-caption-sub');
+
+function buildCarousel(slides) {
+  carouselSlides = slides;
+  carouselTrack.innerHTML = '';
+  carouselDots.innerHTML  = '';
+
+  slides.forEach((slide, i) => {
+    // Slide
+    const div = document.createElement('div');
+    div.className = 'carousel-slide';
+    if (slide.url) {
+      const img = document.createElement('img');
+      img.src = slide.url;
+      img.alt = slide.title || '';
+      img.loading = 'lazy';
+      div.appendChild(img);
+    } else {
+      div.innerHTML = `<div class="carousel-slide-placeholder">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" style="opacity:.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      </div>`;
+    }
+    carouselTrack.appendChild(div);
+
+    // Dot
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `Photo ${i + 1}`);
+    dot.addEventListener('click', () => goToSlide(i));
+    carouselDots.appendChild(dot);
+  });
+
+  goToSlide(0, false);
+  startCarouselTimer();
+}
+
+function goToSlide(index, animate = true) {
+  if (!carouselSlides.length) return;
+  carouselIndex = (index + carouselSlides.length) % carouselSlides.length;
+
+  if (!animate) carouselTrack.style.transition = 'none';
+  carouselTrack.style.transform = `translateX(-${carouselIndex * 100}%)`;
+  if (!animate) void carouselTrack.offsetWidth; // force reflow
+  carouselTrack.style.transition = '';
+
+  // Update dots
+  carouselDots.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === carouselIndex);
+  });
+
+  // Update caption
+  const slide = carouselSlides[carouselIndex];
+  if (captionTitle && slide.title) captionTitle.textContent = slide.title;
+  if (captionSub   && slide.sub)   captionSub.textContent   = slide.sub;
+}
+
+function startCarouselTimer() {
+  clearInterval(carouselTimer);
+  if (carouselSlides.length > 1) {
+    carouselTimer = setInterval(() => goToSlide(carouselIndex + 1), CAROUSEL_INTERVAL);
+  }
+}
+
+// Pause on hover
+const carouselEl = document.getElementById('project-carousel');
+if (carouselEl) {
+  carouselEl.addEventListener('mouseenter', () => clearInterval(carouselTimer));
+  carouselEl.addEventListener('mouseleave', startCarouselTimer);
+}
+
+carouselPrev && carouselPrev.addEventListener('click', () => {
+  goToSlide(carouselIndex - 1);
+  startCarouselTimer();
+});
+carouselNext && carouselNext.addEventListener('click', () => {
+  goToSlide(carouselIndex + 1);
+  startCarouselTimer();
+});
+
+// Touch / swipe support
+let touchStartX = 0;
+carouselEl && carouselEl.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+carouselEl && carouselEl.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 40) {
+    goToSlide(carouselIndex + (dx < 0 ? 1 : -1));
+    startCarouselTimer();
+  }
+}, { passive: true });
+
+// ── Fetch from pics.io (when API key is set) ────────────
+async function loadPicsioPhotos() {
+  if (!PICSIO_API_KEY) {
+    buildCarousel(PLACEHOLDER_SLIDES);
+    return;
+  }
+
+  // Show loading spinner
+  const loading = document.createElement('div');
+  loading.className = 'carousel-loading';
+  loading.innerHTML = '<div class="carousel-spinner"></div> Loading photos…';
+  carouselEl && carouselEl.appendChild(loading);
+
+  try {
+    const res = await fetch('https://api.pics.io/images/getAssets', {
+      method: 'POST',
+      headers: {
+        'Authorization': PICSIO_API_KEY,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        collectionIds: [PICSIO_COLLECTION],
+        limit: 12,
+        fields: ['fileUrl', 'title', 'description'],
+      }),
+    });
+
+    if (!res.ok) throw new Error(`pics.io API error: ${res.status}`);
+    const data = await res.json();
+
+    const slides = (data.assets || data.images || []).map(asset => ({
+      url:   asset.fileUrl || asset.url || null,
+      title: asset.title || 'Featured Project',
+      sub:   asset.description || '',
+    }));
+
+    loading.remove();
+    buildCarousel(slides.length ? slides : PLACEHOLDER_SLIDES);
+  } catch (err) {
+    console.warn('Could not load pics.io photos:', err);
+    loading.remove();
+    buildCarousel(PLACEHOLDER_SLIDES);
+  }
+}
+
+// Boot the carousel
+loadPicsioPhotos();
+
+
+// ══════════════════════════════════════════════════════
 // ANNOUNCEMENT FILTER CHIPS
 // ══════════════════════════════════════════════════════
 document.querySelectorAll('.filter-chip').forEach(chip => {

@@ -59,20 +59,20 @@ const screenLogin = document.getElementById('screen-login');
 const appShell    = document.getElementById('app');
 
 function showApp() {
-  screenLogin.hidden = true;
-  appShell.hidden    = false;
+  if (screenLogin) screenLogin.hidden = true;
+  if (appShell)    appShell.hidden    = false;
   updateGreeting();
 }
 function showLogin() {
-  appShell.hidden    = true;
-  screenLogin.hidden = false;
+  if (appShell)    appShell.hidden    = true;
+  if (screenLogin) screenLogin.hidden = false;
 }
 
 document.getElementById('login-btn')?.addEventListener('click', showApp);
 document.getElementById('login-google-btn')?.addEventListener('click', showApp);
 document.getElementById('login-guest-btn')?.addEventListener('click', showApp);
 document.getElementById('signout-btn')?.addEventListener('click', () => {
-  userPopover.hidden = true;
+  if (userPopover) userPopover.hidden = true;
   showLogin();
 });
 

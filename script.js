@@ -158,7 +158,7 @@ document.querySelectorAll('button[data-route]').forEach(el => {
 // ══════════════════════════════════════════════════════
 const sidebar   = document.getElementById('sidebar');
 const hamburger = document.getElementById('topbar-hamburger');
-hamburger.addEventListener('click', () => sidebar.classList.toggle('open'));
+hamburger?.addEventListener('click', () => sidebar?.classList.toggle('open'));
 
 document.addEventListener('click', e => {
   if (window.innerWidth <= 768 && sidebar.classList.contains('open')) {
@@ -175,7 +175,7 @@ document.addEventListener('click', e => {
 const userTrigger = document.getElementById('user-trigger');
 const userPopover = document.getElementById('user-popover');
 
-userTrigger.addEventListener('click', e => {
+userTrigger?.addEventListener('click', e => {
   e.stopPropagation();
   const open = !userPopover.hidden;
   userPopover.hidden = open;

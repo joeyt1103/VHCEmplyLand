@@ -545,6 +545,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .quick-link-label { font-size: 13px; font-weight: 600; }
 .quick-link-sub   { font-size: 11px; color: var(--vhc-muted-fg); }
+a.quick-link-card { text-decoration: none; color: var(--vhc-foreground); }
 
 /* Widget grid */
 .widget-grid {

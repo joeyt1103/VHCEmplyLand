@@ -81,11 +81,6 @@ document.getElementById('login-password')?.addEventListener('keydown', e => {
   if (e.key === 'Enter') showApp();
 });
 
-// Allow pressing Enter in the password field to sign in
-document.getElementById('login-password').addEventListener('keydown', e => {
-  if (e.key === 'Enter') showApp();
-});
-
 
 // ══════════════════════════════════════════════════════
 // DYNAMIC GREETING DATE

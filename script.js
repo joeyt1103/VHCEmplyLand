@@ -70,6 +70,7 @@ function showLogin() {
 
 document.getElementById('login-btn').addEventListener('click', showApp);
 document.getElementById('login-google-btn').addEventListener('click', showApp);
+document.getElementById('login-guest-btn').addEventListener('click', showApp);
 document.getElementById('signout-btn').addEventListener('click', () => {
   userPopover.hidden = true;
   showLogin();
